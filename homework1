@@ -1,0 +1,24 @@
+import sounddevice
+from scipy.io.wavfile import write
+
+duration = 20
+fs =44100
+
+record_voice = sounddevice.rec(int(duration * fs), samplerate=fs, channels=1)
+sounddevice.wait()
+write('recorded_sound.wav', fs, record_voice)
+
+
+
+start2 =input("do you want to play? yes/no:")
+if start2 == "yes":
+    import sounddevice as sd
+    import soundfile as sf
+
+
+    file_path = 'recorded_sound.wav'
+    data, fs = sf.read(file_path)
+
+
+    sd.play(data, fs)
+    sd.wait()
